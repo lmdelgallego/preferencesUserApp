@@ -11,16 +11,18 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Preferencias de usuario'),
+        backgroundColor:
+            (pref.colorSecundario) ? Colors.amber : Colors.deepPurple,
       ),
       drawer: MenuWidget(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Color secundario:'),
+          Text('Color secundario: ${pref.colorSecundario}'),
           Divider(),
           Text('Genero: ${pref.genero}'),
           Divider(),
-          Text('Nombre Usuario:'),
+          Text('Nombre Usuario: ${pref.nombre}'),
           Divider(),
         ],
       ),

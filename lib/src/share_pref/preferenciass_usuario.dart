@@ -27,4 +27,20 @@ class PreferenciasUsuario {
   set genero(int value) {
     this._prefs.setInt('genero', value);
   }
+
+  get colorSecundario {
+    return this._prefs.getBool('colorSecundario') ?? false;
+  }
+
+  set colorSecundario(bool value) {
+    this._prefs.setBool('colorSecundario', value);
+  }
+
+  get nombre {
+    return this._prefs.getString('nombre') ?? 'Usuario';
+  }
+
+  set nombre(String value) {
+    this._prefs.setString('nombre', value);
+  }
 }

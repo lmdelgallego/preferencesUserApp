@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:preferences_user_app/src/share_pref/preferenciass_usuario.dart';
 import 'package:preferences_user_app/src/widgets/menu_widget.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key key}) : super(key: key);
@@ -11,28 +11,23 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  bool _colorSecundario = false;
-  int _genero = 1;
-  String _nombre = 'Luismi';
+  bool _colorSecundario;
+  int _genero;
+  String _nombre;
 
   TextEditingController _textEditingController;
+  final pref = new PreferenciasUsuario();
 
   @override
   void initState() {
     super.initState();
-    cargarPref();
-    _textEditingController = new TextEditingController(text: _nombre);
+    _genero = pref.genero;
+    _colorSecundario = pref.colorSecundario;
+    _textEditingController = new TextEditingController(text: pref.nombre);
   }
 
-  Future cargarPref() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    _genero = prefs.getInt('genero');
-    setState(() {});
-  }
-
-  void _setSelectedRadio(int value) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setInt('genero', value);
+  void _setSelectedRadio(int value) {
+    pref.genero = value;
     _genero = value;
     setState(() {});
   }
@@ -42,6 +37,8 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Preferencias'),
+        backgroundColor:
+            (pref.colorSecundario) ? Colors.amber : Colors.deepPurple,
       ),
       drawer: MenuWidget(),
       body: ListView(
@@ -58,6 +55,7 @@ class _SettingsPageState extends State<SettingsPage> {
             value: _colorSecundario,
             title: Text('Color secundario'),
             onChanged: (value) {
+              pref.colorSecundario = value;
               _colorSecundario = value;
               setState(() {});
             },
@@ -83,7 +81,9 @@ class _SettingsPageState extends State<SettingsPage> {
                 labelText: 'Nombre',
                 helperText: 'Nombre de la persona que esta usando el telefono',
               ),
-              onChanged: (value) {},
+              onChanged: (value) {
+                pref.nombre = value;
+              },
             ),
           )
         ],
