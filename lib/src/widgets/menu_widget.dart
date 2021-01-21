@@ -27,6 +27,11 @@ class MenuWidget extends StatelessWidget {
                 Navigator.pushReplacementNamed(context, HomePage.routeName),
           ),
           ListTile(
+            leading: Icon(Icons.camera, color: Colors.blue),
+            title: Text('Party Mode'),
+            onTap: () {},
+          ),
+          ListTile(
             leading: Icon(Icons.people, color: Colors.blue),
             title: Text('People'),
             onTap: () {},
