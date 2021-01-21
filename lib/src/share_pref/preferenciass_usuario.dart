@@ -1,3 +1,4 @@
+import 'package:preferences_user_app/src/pages/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PreferenciasUsuario {
@@ -42,5 +43,13 @@ class PreferenciasUsuario {
 
   set nombre(String value) {
     this._prefs.setString('nombre', value);
+  }
+
+  get lastPage {
+    return this._prefs.getString('lastPage') ?? HomePage.routeName;
+  }
+
+  set lastPage(String value) {
+    this._prefs.setString('lastPage', value);
   }
 }

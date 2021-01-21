@@ -8,6 +8,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    pref.lastPage = HomePage.routeName;
     return Scaffold(
       appBar: AppBar(
         title: Text('Preferencias de usuario'),

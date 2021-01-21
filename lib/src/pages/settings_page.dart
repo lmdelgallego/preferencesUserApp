@@ -23,6 +23,7 @@ class _SettingsPageState extends State<SettingsPage> {
     super.initState();
     _genero = pref.genero;
     _colorSecundario = pref.colorSecundario;
+    pref.lastPage = SettingsPage.routeName;
     _textEditingController = new TextEditingController(text: pref.nombre);
   }
 
